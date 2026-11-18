@@ -3,145 +3,408 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A neved – Portfólió</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome ikonok -->
+    <title>Footy - Foci Tippelős</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-color: #f8fafc;
+            --bg-color: #0b0f19;
+            --card-bg: #131b2e;
+            --card-hover: #1b2642;
+            --accent: #10b981;
+            --accent-hover: #059669;
+            --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --accent-color: #38bdf8;
-            --accent-hover: #0ea5e9;
+            --border: rgba(255, 255, 255, 0.08);
+            --danger: #ef4444;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            color: var(--text-main);
             min-height: 100vh;
-            padding: 20px;
+            padding-bottom: 50px;
         }
 
-        .container {
-            width: 100%;
-            max-width: 600px;
-            background: var(--card-bg);
-            padding: 40px 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
-            text-align: center;
+        header {
+            background: rgba(19, 27, 46, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--accent-color);
-            margin-bottom: 20px;
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.5px;
         }
 
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 5px;
-            font-weight: 700;
-        }
-
-        .subtitle {
-            color: var(--accent-color);
-            font-size: 1.1rem;
-            margin-bottom: 20px;
+        .user-stats {
+            display: flex;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 8px 16px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            font-size: 0.95rem;
             font-weight: 600;
         }
 
-        p {
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            font-size: 0.95rem;
+        .user-stats span i {
+            color: var(--accent);
+            margin-right: 5px;
         }
 
-        .links {
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .leagues-nav {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            scrollbar-width: none;
+        }
+
+        .leagues-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .league-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .league-btn:hover, .league-btn.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .matches-grid {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
 
-        .btn {
+        .match-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transition: border-color 0.2s;
+        }
+
+        .match-card:hover {
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .match-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .match-body {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .team {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .team.home {
+            justify-content: flex-end;
+            text-align: right;
+        }
+
+        .team.away {
+            justify-content: flex-start;
+            text-align: left;
+        }
+
+        .team-name {
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        .team-logo {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            background-color: rgba(56, 189, 248, 0.1);
-            color: var(--text-color);
-            text-decoration: none;
-            padding: 14px 20px;
-            border-radius: 8px;
-            font-weight: 650;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(56, 189, 248, 0.2);
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: var(--accent);
         }
 
-        .btn:hover {
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+        .score-inputs {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 20px;
         }
 
-        .btn i {
+        .score-inputs input {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: #fff;
             font-size: 1.2rem;
+            font-weight: 700;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.2s;
         }
 
-        footer {
-            margin-top: 30px;
-            font-size: 0.8rem;
+        .score-inputs input:focus {
+            border-color: var(--accent);
+        }
+
+        .score-inputs span {
             color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .match-footer {
+            display: flex;
+            justify-content: flex-end;
+            border-top: 1px solid var(--border);
+            padding-top: 12px;
+        }
+
+        .tip-btn {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .tip-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        .tip-btn.predicted {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent);
+            cursor: default;
+        }
+
+        @media(max-width: 768px) {
+            .match-body {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .team.home {
+                justify-content: center;
+                text-align: center;
+            }
+            .team.away {
+                justify-content: center;
+                text-align: center;
+            }
+            .team {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
 
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-futbol"></i> Footy
+        </div>
+        <div class="user-stats">
+            <span><i class="fa-solid fa-star"></i> <span id="user-points">0</span> pont</span>
+            <span><i class="fa-solid fa-ticket"></i> <span id="user-tips">0</span> tipp</span>
+        </div>
+    </header>
+
     <div class="container">
-        <!-- Profilkép helye (cserélheted saját linkre vagy képre) -->
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80" alt="Profilkép" class="profile-img">
-        
-        <h1>A Te Neved</h1>
-        <div class="subtitle">Webfejlesztő & Programozó</div>
-        
-        <p>Szia! Üdvözlök a személyes oldalamon. Szenvedélyem a kódolás, a modern webes technológiák és a kreatív projektek építése.</p>
-        
-        <div class="links">
-            <!-- Ide írhatod a saját linkjeidet -->
-            <a href="https://github.com/a-felhasznaloneved" target="_blank" class="btn">
-                <i class="fab fa-github"></i> GitHub Profilom
-            </a>
-            <a href="https://linkedin.com/in/a-felhasznaloneved" target="_blank" class="btn">
-                <i class="fab fa-linkedin"></i> LinkedIn Kapcsolat
-            </a>
-            <a href="mailto:emailcimed@pelda.hu" class="btn">
-                <i class="fas fa-envelope"></i> Írj nekem e-mailt
-            </a>
+        <div class="hero">
+            <h1>Top 5 Bajnokság Tippelős</h1>
+            <p>Add meg a tippjeid és gyűjts pontokat a telitalálatokért és a helyes kimenetelekért!</p>
         </div>
 
-        <footer>
-            &copy; 2026 Minden jog fenntartva.
-        </footer>
+        <div class="leagues-nav">
+            <button class="league-btn active" onclick="filterLeague('all')">Összes Liga</button>
+            <button class="league-btn" onclick="filterLeague('premier-league')">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</button>
+            <button class="league-btn" onclick="filterLeague('laliga')">🇪🇸 La Liga</button>
+            <button class="league-btn" onclick="filterLeague('serie-a')">🇮🇹 Serie A</button>
+            <button class="league-btn" onclick="filterLeague('bundesliga')">🇩🇪 Bundesliga</button>
+            <button class="league-btn" onclick="filterLeague('ligue-1')">🇫🇷 Ligue 1</button>
+        </div>
+
+        <div class="matches-grid" id="matches-container">
+            <!-- Dinamikusan generált meccsek -->
+        </div>
     </div>
 
+    <script>
+        const matchesData = [
+            { id: 1, league: 'premier-league', leagueName: 'Premier League', home: 'Arsenal', homeCode: 'ARS', away: 'Chelsea', awayCode: 'CHE', time: 'Ma, 21:00' },
+            { id: 2, league: 'premier-league', leagueName: 'Premier League', home: 'Man City', homeCode: 'MCI', away: 'Liverpool', awayCode: 'LIV', time: 'Holnap, 18:30' },
+            { id: 3, league: 'laliga', leagueName: 'La Liga', home: 'Real Madrid', homeCode: 'RMC', away: 'Barcelona', awayCode: 'BAR', time: 'Holnap, 21:00' },
+            { id: 4, league: 'laliga', leagueName: 'La Liga', home: 'Atlético Madrid', homeCode: 'ATM', away: 'Sevilla', awayCode: 'SEV', time: 'Vasárnap, 16:15' },
+            { id: 5, league: 'serie-a', leagueName: 'Serie A', home: 'Inter', homeCode: 'INT', away: 'Juventus', awayCode: 'JUV', time: 'Vasárnap, 20:45' },
+            { id: 6, league: 'serie-a', leagueName: 'Serie A', home: 'AC Milan', homeCode: 'MIL', away: 'Napoli', awayCode: 'NAP', time: 'Hétfő, 20:45' },
+            { id: 7, league: 'bundesliga', leagueName: 'Bundesliga', home: 'Bayern München', homeCode: 'BAY', away: 'BVB Dortmund', awayCode: 'BVB', time: 'Szombat, 18:30' },
+            { id: 8, league: 'bundesliga', leagueName: 'Bundesliga', home: 'RB Leipzig', homeCode: 'RBL', away: 'Bayer Leverkusen', awayCode: 'LEV', time: 'Szombat, 15:30' },
+            { id: 9, league: 'ligue-1', leagueName: 'Ligue 1', home: 'PSG', homeCode: 'PSG', away: 'Marseille', awayCode: 'OM', time: 'Vasárnap, 21:00' },
+            { id: 10, league: 'ligue-1', leagueName: 'Ligue 1', home: 'Monaco', homeCode: 'ASM', away: 'Lyon', awayCode: 'OL', time: 'Vasárnap, 17:00' }
+        ];
+
+        let userPoints = parseInt(localStorage.getItem('footy_points')) || 0;
+        let userTipsCount = parseInt(localStorage.getItem('footy_tips')) || 0;
+        let userPredictions = JSON.parse(localStorage.getItem('footy_predictions')) || {};
+
+        document.getElementById('user-points').innerText = userPoints;
+        document.getElementById('user-tips').innerText = userTipsCount;
+
+        function renderMatches(filter = 'all') {
+            const container = document.getElementById('matches-container');
+            container.innerHTML = '';
+
+            const filtered = filter === 'all' ? matchesData : matchesData.filter(m => m.league === filter);
+
+            filtered.forEach(match => {
+                const pred = userPredictions[match.id] || { home: '', away: '', saved: false };
+                
+                const card = document.createElement('div');
+                card.className = 'match-card';
+                card.innerHTML = `
+                    <div class="match-header">
+                        <span>${match.leagueName}</span>
+                        <span><i class="fa-regular fa-clock"></i> ${match.time}</span>
+                    </div>
+                    <div class="match-body">
+                        <div class="team home">
+                            <span class="team-name">${match.home}</span>
+                            <div class="team-logo">${match.homeCode}</div>
+                        </div>
+                        <div class="score-inputs">
+                            <input type="number" min="0" max="99" id="home-${match.id}" value="${pred.home}" ${pred.saved ? 'disabled' : ''}>
+                            <span>-</span>
+                            <input type="number" min="0" max="99" id="away-${match.id}" value="${pred.away}" ${pred.saved ? 'disabled' : ''}>
+                        </div>
+                        <div class="team away">
+                            <div class="team-logo">${match.awayCode}</div>
+                            <span class="team-name">${match.away}</span>
+                        </div>
+                    </div>
+                    <div class="match-footer">
+                        <button class="tip-btn ${pred.saved ? 'predicted' : ''}" id="btn-${match.id}" onclick="saveTip(${match.id})">
+                            ${pred.saved ? '<i class="fa-solid fa-check"></i> Tipp elmentve' : 'Tipp Mentése'}
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterLeague(league) {
+            document.querySelectorAll('.league-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderMatches(league);
+        }
+
+        function saveTip(id) {
+            const homeInput = document.getElementById(`home-${id}`);
+            const awayInput = document.getElementById(`away-${id}`);
+            const homeVal = homeInput.value;
+            const awayVal = awayInput.value;
+
+            if (homeVal === '' || awayVal === '') {
+                alert('Kérlek add meg mindkét csapat várható góljait!');
+                return;
+            }
+
+            userPredictions[id] = { home: homeVal, away: awayVal, saved: true };
+            localStorage.setItem('footy_predictions', JSON.stringify(userPredictions));
+
+            userTipsCount++;
+            userPoints += 3; // Kezdő bónusz/aktivitási pont tippért
+            localStorage.setItem('footy_tips', userTipsCount);
+            localStorage.setItem('footy_points', userPoints);
+
+            document.getElementById('user-points').innerText = userPoints;
+            document.getElementById('user-tips').innerText = userTipsCount;
+
+            homeInput.disabled = true;
+            awayInput.disabled = true;
+            
+            const btn = document.getElementById(`btn-${id}`);
+            btn.className = 'tip-btn predicted';
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> Tipp elmentve';
+        }
+
+        renderMatches();
+    </script>
 </body>
 </html>
