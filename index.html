@@ -1,1 +1,147 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A neved – Portfólió</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome ikonok -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-color: #38bdf8;
+            --accent-hover: #0ea5e9;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-weight: 650;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+        }
+
+        .btn i {
+            font-size: 1.2rem;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Profilkép helye (cserélheted saját linkre vagy képre) -->
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80" alt="Profilkép" class="profile-img">
+        
+        <h1>A Te Neved</h1>
+        <div class="subtitle">Webfejlesztő & Programozó</div>
+        
+        <p>Szia! Üdvözlök a személyes oldalamon. Szenvedélyem a kódolás, a modern webes technológiák és a kreatív projektek építése.</p>
+        
+        <div class="links">
+            <!-- Ide írhatod a saját linkjeidet -->
+            <a href="https://github.com/a-felhasznaloneved" target="_blank" class="btn">
+                <i class="fab fa-github"></i> GitHub Profilom
+            </a>
+            <a href="https://linkedin.com/in/a-felhasznaloneved" target="_blank" class="btn">
+                <i class="fab fa-linkedin"></i> LinkedIn Kapcsolat
+            </a>
+            <a href="mailto:emailcimed@pelda.hu" class="btn">
+                <i class="fas fa-envelope"></i> Írj nekem e-mailt
+            </a>
+        </div>
+
+        <footer>
+            &copy; 2026 Minden jog fenntartva.
+        </footer>
+    </div>
+
+</body>
+</html>
